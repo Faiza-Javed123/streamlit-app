@@ -22,40 +22,17 @@ st.title("📊 Big Data Project - Streamlit App")
 # -------------------------------
 # Load Dataset: Fixed file or fallback uploader
 # -------------------------------
-st.header("1️⃣ Load Dataset")
 
-DATA_FILE = "Blockchain excel.xlsx"   # same folder me rakho app.py ke sath
-cwd = os.getcwd()
-fixed_path = os.path.join(cwd, DATA_FILE)
+st.header("1️⃣ Load Dataset (Fixed)")
 
-df = None
+DATA_FILE = "Blockchain excel.xlsx"   # file same folder me hona chahiye
 
-if os.path.exists(fixed_path):
-    try:
-        xls = pd.ExcelFile(fixed_path)
-        SHEET = xls.sheet_names[0]
-        df = pd.read_excel(fixed_path, sheet_name=SHEET, engine="openpyxl")
-        st.success(f"Dataset loaded from fixed file: {DATA_FILE} — Shape = {df.shape}")
-        st.write(df.head())
-    except Exception as e:
-        st.error(f"Error reading fixed file '{fixed_path}': {e}")
+xls = pd.ExcelFile(DATA_FILE)
+SHEET = xls.sheet_names[0]
+df = pd.read_excel(DATA_FILE, sheet_name=SHEET, engine="openpyxl")
 
-if df is None:
-    st.warning(f"Fixed file not found at: {fixed_path}")
-    uploaded_file = st.file_uploader("Upload your Excel file", type=["xlsx", "xls"])
-    if uploaded_file is not None:
-        try:
-            xls = pd.ExcelFile(uploaded_file)
-            SHEET = xls.sheet_names[0]
-            df = pd.read_excel(uploaded_file, sheet_name=SHEET, engine="openpyxl")
-            st.success(f"Dataset loaded from uploaded file — Shape = {df.shape}")
-            st.write(df.head())
-        except Exception as e:
-            st.error(f"Error reading uploaded file: {e}")
-
-if df is None:
-    st.stop()  # agar dataset load hi nahi hua to app stop ho jaye
-
+st.success(f"Dataset loaded! Shape = {df.shape}")
+st.write(df.head())
 # -------------------------------
 # EDA
 # -------------------------------
@@ -168,4 +145,5 @@ if st.button("Start Training"):
         ax.legend()
         st.pyplot(fig)
     else:
+
         st.warning("Not enough numeric columns for PCA.")

@@ -1,4 +1,6 @@
-requirements.txt
+├── app.py
+├── requirements.txt
+Requirements file ke andar seaborn likha hai ya nahi. Example content:
 
 nginx
 Copy code

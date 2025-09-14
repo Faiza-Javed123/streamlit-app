@@ -1,0 +1,15 @@
+requirements.txt
+
+nginx
+Copy code
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+scipy
+sdv
+rdt
+openpyxl
+joblib
+streamlit

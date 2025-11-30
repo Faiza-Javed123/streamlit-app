@@ -108,7 +108,7 @@ elif page == "GENERATE":
                         else:
                             model = GaussianCopulaSynthesizer(
                                 metadata=metadata,
-                                verbose=False
+                            
                             )
 
                         model.fit(df)
@@ -215,4 +215,5 @@ elif page == "ACCURACY":
 
 # ------------------- Footer -------------------
 st.markdown("---")
+
 st.caption("© 2025 Data Synthesizer – Privacy-First Synthetic Data Platform")
